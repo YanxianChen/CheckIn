@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CheckIn</string>
+    <string name="login_username">Username</string>
+    <string name="login_email">Email</string>
+    <string name="login_pw">Password</string>
+    <string name="login_pw_confirm">Confirm&#160;Password</string>
+    <string name="login_title">LOGIN</string>
+    <string name="register_title">REGISTER</string>
+    <string name="login_btn">Login&#160;&#160;in</string>
+    <string name="register_btn">Register</string>
+    <string name="login_register_tip">还没有账号?立刻注册</string>
+    <string name="forget_password">Forgot&#160;&#160;Password?</string>
+    <string name="addCourse">添加课程</string>
+    <string name="studentid">studentId</string>
+    <string name="courseName">课程名</string>
+    <string name="courseId">课程ID</string>
+    <string name="numberOfStudent">学生人数:</string>
+    <string name="openCheckIn">开放签到</string>
+    <string name="manualCheckIn">手动补签</string>
+    <string name="endCheckIn">结束签到</string>
+    <string name="checkIn">签到情况</string>
+
+    <string name="AddCourse">Add&#160;&#160;Course</string>
+    <string name="CourseCount">节数</string>
+    <string name="CourseCountPls">请填写节数</string>
+    <string name="ClassTime">上课时间</string>
+    <string name="ClassTimePls">请填写上课时间</string>
+    <string name="ClassLocation">上课地点</string>
+    <string name="ClassLocationPls">请填写上课地点</string>
+    <string name="numberOfStudentPls">请填写学生人数</string>
+    <string name="exportTable">导出签到表</string>
+    <string name="courseNamePls">请填写课程名称</string>
+    <string name="courseTime">课时</string>
+    <string name="courseTimePls">请填写课时</string>
+    <string name="saveMessage">保存</string>
+    <string name="confirm">确定</string>
+</resources>
