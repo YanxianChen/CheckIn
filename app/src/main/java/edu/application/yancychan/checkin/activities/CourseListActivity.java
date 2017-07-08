@@ -11,9 +11,11 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
 import edu.application.yancychan.checkin.R;
 import edu.application.yancychan.checkin.adapters.CourseAdapter;
 import edu.application.yancychan.checkin.beans.Course;
+import edu.application.yancychan.checkin.utils.RecyclerViewListDecoration;
 
 public class CourseListActivity extends AppCompatActivity {
 
@@ -31,6 +33,7 @@ public class CourseListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
 //        TextView courseName = (TextView) findViewById(R.id.courseName);
+        ButterKnife.inject(this);
         Button addCourse = (Button) findViewById(R.id.addCourse);
         addCourse.getBackground().setAlpha(000);
         addCourse.setOnClickListener(new View.OnClickListener() {
@@ -42,9 +45,12 @@ public class CourseListActivity extends AppCompatActivity {
         });
         initCourses();
         RecyclerView recyclerview = (RecyclerView) findViewById(R.id.manager_recycler_view);
-        CourseAdapter adapter = new CourseAdapter(courseList);
+        CourseAdapter adapter = new CourseAdapter(this,courseList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(layoutManager);
+        recyclerview.addItemDecoration(new RecyclerViewListDecoration(this,
+                RecyclerViewListDecoration.VERTICAL_LIST));
+        recyclerview.setHasFixedSize(true);
         recyclerview.setAdapter(adapter);
     }
 
