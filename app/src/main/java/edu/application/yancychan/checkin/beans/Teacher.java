@@ -1,10 +1,12 @@
 package edu.application.yancychan.checkin.beans;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by yancychan on 17-7-4.
  */
 
-public class Teacher {
+public class Teacher extends DataSupport {
 
     private byte sex;
     private int teacherId;

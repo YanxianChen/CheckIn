@@ -11,19 +11,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/manager_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
-        <Button
-            android:id="@+id/addCourse"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/addCourse"
-            android:textSize="14dp"/>
-    </android.support.v7.widget.CardView>
 
 </LinearLayout>

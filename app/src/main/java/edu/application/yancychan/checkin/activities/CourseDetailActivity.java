@@ -29,20 +29,7 @@ public class CourseDetailActivity extends AppCompatActivity {
             new Student(41455228,R.drawable.woman,false),new Student(41455118,R.drawable.man,true),
             new Student(49455070,R.drawable.man,false),new Student(41155378,R.drawable.woman,false)};
 
-//    private Student[] students = {new Student(41455078),new Student(41455066),
-//            new Student(41455011),new Student(41455073),
-//            new Student(41455228),new Student(41455118),
-//            new Student(49455070),new Student(41155378)};
-
     private List<Student> studentList = new ArrayList<>();
-
-    private LinearLayout tab1Layout, tab2Layout;
-
-    private int index = 1;
-
-    private FragmentManager fragmentManager;
-
-    private Fragment tab1Fragment, tab2Fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,21 +58,12 @@ public class CourseDetailActivity extends AppCompatActivity {
         courseNameContent.setText(courseName);
         numberOfStudentContent.setText(numberOfStudent);
 
-
-
-        //numberOfStudentContent.append((CharSequence)numberOfStudent);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu,menu);
-//        return true;
-//    }
 
     public void initStudents(){
         studentList.clear();
         for (int i=0; i<students.length; i++){
-
             studentList.add(students[i]);
         }
     }

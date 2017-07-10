@@ -1,0 +1,10 @@
+<litepal>
+    <dbname value="check_in"/>
+    <version value="1"/>
+
+    <list>
+        <mapping class="edu.application.yancychan.checkin.beans.Course"/>
+        <mapping class="edu.application.yancychan.checkin.beans.Student"/>
+        <mapping class="edu.application.yancychan.checkin.beans.Teacher"/>
+    </list>
+</litepal>

@@ -75,10 +75,11 @@
                     android:textColor="#ffffff"/>
             </LinearLayout>
 
-            <ImageView
+
+            <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
-                android:background="#ffffff"/>
+                android:background="#d0d0d0" />
 
             <!-- tab2 -->
             <LinearLayout

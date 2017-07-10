@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import edu.application.yancychan.checkin.R;
 import edu.application.yancychan.checkin.activities.CourseDetailActivity;
+import edu.application.yancychan.checkin.activities.CourseEditActivity;
 import edu.application.yancychan.checkin.activities.CourseListActivity;
 import edu.application.yancychan.checkin.beans.Course;
 import edu.application.yancychan.checkin.utils.ItemSlideHelper;
@@ -102,6 +103,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 // TODO: 17-7-8 编辑页面未写
                 Toast.makeText(mContent, "进入编辑界面", Toast.LENGTH_SHORT).show();
                 notifyItemChanged(holder.getAdapterPosition());
+                Intent intent = new Intent(mContent, CourseEditActivity.class);
+                mContent.startActivity(intent);
             }
         });
 

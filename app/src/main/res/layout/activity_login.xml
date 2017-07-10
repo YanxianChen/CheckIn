@@ -15,8 +15,6 @@
         android:layout_centerVertical="true"
         android:orientation="vertical">
 
-
-
         <TextView
             android:id="@+id/login_text"
             android:layout_width="213dp"
@@ -73,7 +71,6 @@
             android:layout_alignRight="@+id/login_register_tip_tv"
             android:layout_alignStart="@+id/login_register_tip_tv"
             android:background="@color/colorAccentDark" />
-
     </RelativeLayout>
 
     <Button

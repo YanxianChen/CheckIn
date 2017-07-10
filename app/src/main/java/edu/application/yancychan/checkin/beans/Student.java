@@ -1,10 +1,12 @@
 package edu.application.yancychan.checkin.beans;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by yancychan on 17-7-4.
  */
 
-public class Student {
+public class Student extends DataSupport{
 
     private int studentId;  //学号
     private int sex;    //性别

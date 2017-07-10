@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import edu.application.yancychan.checkin.R;
 import edu.application.yancychan.checkin.adapters.CourseAdapter;
 import edu.application.yancychan.checkin.beans.Course;
+import edu.application.yancychan.checkin.managers.MyLinearLayoutManager;
 import edu.application.yancychan.checkin.utils.RecyclerViewListDecoration;
 
 public class CourseListActivity extends AppCompatActivity {
@@ -24,7 +25,18 @@ public class CourseListActivity extends AppCompatActivity {
     public static final String NUMBER_OF_STUDENT = "number_of_student";
 
     private Course[] courses = {new Course("软件工程",23123,33),
-            new Course("计算机网络",67523,66),new Course("数据结构",43421,81)};
+            new Course("计算机网络",67523,66),new Course("软件工程",23123,33),
+            new Course("数据结构",43421,81),new Course("软件工程",23123,33),
+            new Course("计算机网络",67523,66),new Course("软件工程",23123,33),
+            new Course("数据结构",43421,81),new Course("软件工程",23123,33),
+            new Course("计算机网络",67523,66),new Course("软件工程",23123,33),
+            new Course("数据结构",43421,81),new Course("软件工程",23123,33),
+            new Course("计算机网络",67523,66),new Course("软件工程",23123,33),
+            new Course("数据结构",43421,81),new Course("软件工程",23123,33),
+            new Course("计算机网络",67523,66),new Course("软件工程",23123,33),
+            new Course("数据结构",43421,81),new Course("软件工程",23123,33),
+            new Course("计算机网络",67523,66),new Course("软件工程",23123,33),
+            new Course("数据结构",43421,81)};
 
     private List<Course> courseList = new ArrayList<>();
 
@@ -34,19 +46,21 @@ public class CourseListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_course_list);
 //        TextView courseName = (TextView) findViewById(R.id.courseName);
         ButterKnife.inject(this);
-        Button addCourse = (Button) findViewById(R.id.addCourse);
-        addCourse.getBackground().setAlpha(000);
-        addCourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CourseListActivity.this,AddCourseActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        //todo:把添加课程的按钮放到toolbar上
+//        Button addCourse = (Button) findViewById(R.id.addCourse);
+//        addCourse.getBackground().setAlpha(000);
+//        addCourse.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(CourseListActivity.this,AddCourseActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         initCourses();
         RecyclerView recyclerview = (RecyclerView) findViewById(R.id.manager_recycler_view);
         CourseAdapter adapter = new CourseAdapter(this,courseList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         recyclerview.setLayoutManager(layoutManager);
         recyclerview.addItemDecoration(new RecyclerViewListDecoration(this,
                 RecyclerViewListDecoration.VERTICAL_LIST));
@@ -56,7 +70,7 @@ public class CourseListActivity extends AppCompatActivity {
 
     private void initCourses() {
         courseList.clear();
-        for (int i=0; i<3; i++) {
+        for (int i=0; i<courses.length; i++) {
             courseList.add(courses[i]);
         }
     }

@@ -34,4 +34,8 @@
     <string name="courseTimePls">请填写课时</string>
     <string name="saveMessage">保存</string>
     <string name="confirm">确定</string>
+    <string name="changeCourse">确定修改</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
