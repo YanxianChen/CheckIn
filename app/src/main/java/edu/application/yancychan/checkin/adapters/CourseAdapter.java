@@ -17,6 +17,7 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import edu.application.yancychan.checkin.R;
+import edu.application.yancychan.checkin.activities.CourseCheckInActivity;
 import edu.application.yancychan.checkin.activities.CourseDetailActivity;
 import edu.application.yancychan.checkin.activities.CourseEditActivity;
 import edu.application.yancychan.checkin.activities.CourseListActivity;
@@ -91,7 +92,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContent,"进入详细界面",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContent,CourseDetailActivity.class);
+                Intent intent = new Intent(mContent,CourseCheckInActivity.class);
                 mContent.startActivity(intent);
             }
         });

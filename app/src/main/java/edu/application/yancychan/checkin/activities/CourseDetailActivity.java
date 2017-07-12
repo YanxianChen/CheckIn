@@ -1,14 +1,11 @@
 package edu.application.yancychan.checkin.activities;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,19 +26,23 @@ public class CourseDetailActivity extends AppCompatActivity {
             new Student(41455228,R.drawable.woman,false),new Student(41455118,R.drawable.man,true),
             new Student(49455070,R.drawable.man,false),new Student(41155378,R.drawable.woman,false)};
 
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
     private List<Student> studentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
-        TextView openCheckIn = (TextView) findViewById(R.id.CheckIn);
-        TextView manualCheckIn = (TextView) findViewById(R.id.manualCheckIn);
-//        openCheckIn.getBackground().setAlpha(000);
-//        manualCheckIn.getBackground().setAlpha(000);
-        TextView courseIdContent = (TextView) findViewById(R.id.courseId);
-        TextView courseNameContent = (TextView) findViewById(R.id.courseName_detail);
-        TextView numberOfStudentContent = (TextView) findViewById(R.id.numberOfStudent);
+//        TextView openCheckIn = (TextView) findViewById(R.id.CheckIn);
+//        TextView manualCheckIn = (TextView) findViewById(R.id.manualCheckIn);
+////        openCheckIn.getBackground().setAlpha(000);
+////        manualCheckIn.getBackground().setAlpha(000);
+//        TextView courseIdContent = (TextView) findViewById(R.id.courseId);
+//        TextView courseNameContent = (TextView) findViewById(R.id.courseName_detail);
+//        TextView numberOfStudentContent = (TextView) findViewById(R.id.numberOfStudent);
         initStudents();
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -54,9 +55,9 @@ public class CourseDetailActivity extends AppCompatActivity {
         String courseId = intent.getStringExtra(COURSE_ID);
         String courseName = intent.getStringExtra(COURSE_NAME);
         String numberOfStudent = intent.getStringExtra(NUMBER_OF_STUDENT);
-        courseIdContent.setText(courseId);
-        courseNameContent.setText(courseName);
-        numberOfStudentContent.setText(numberOfStudent);
+//        courseIdContent.setText(courseId);
+//        courseNameContent.setText(courseName);
+//        numberOfStudentContent.setText(numberOfStudent);
 
     }
 
