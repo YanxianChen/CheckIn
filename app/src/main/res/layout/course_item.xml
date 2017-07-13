@@ -35,7 +35,7 @@
     <LinearLayout
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:background="#848484">
+        android:background="#a19f9f">
 
         <TextView
             android:id="@+id/course_edit"

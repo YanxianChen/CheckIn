@@ -92,7 +92,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContent,"进入详细界面",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContent,CourseCheckInActivity.class);
+                Intent intent = new Intent(mContent,CourseDetailActivity.class);
                 mContent.startActivity(intent);
             }
         });

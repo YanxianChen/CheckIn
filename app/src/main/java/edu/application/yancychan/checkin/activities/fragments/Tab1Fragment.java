@@ -1,10 +1,8 @@
 package edu.application.yancychan.checkin.activities.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +18,8 @@ import edu.application.yancychan.checkin.beans.Student;
 
 public class Tab1Fragment extends Fragment {
     private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private StudentAdapter adapter;
     private View mView;
 
     public Student[] students = {new Student(41455078,R.drawable.man,true),new Student(41455066,
@@ -47,11 +47,44 @@ public class Tab1Fragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mRecyclerView = (RecyclerView) mView.findViewById(R.id.recycler_view1);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.swipe_refresh_tab1);
         GridLayoutManager layoutManager = new GridLayoutManager(mRecyclerView.getContext(),4);
         mRecyclerView.setLayoutManager(layoutManager);
         initStudents();
-        StudentAdapter adapter = new StudentAdapter(studentList);
+        setListeners();
+        adapter = new StudentAdapter(studentList);
         mRecyclerView.setAdapter(adapter);
+    }
+
+    private void setListeners(){
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshStudents();
+            }
+        });
+    }
+
+    private void refreshStudents() {
+        // TODO: 17-7-12 下拉刷新功能
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
     }
 
 }

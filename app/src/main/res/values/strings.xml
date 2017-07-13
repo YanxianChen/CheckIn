@@ -14,8 +14,8 @@
     <string name="studentid">studentId</string>
     <string name="courseName">课程名</string>
     <string name="courseId">课程ID</string>
-    <string name="numberOfStudent">学生人数:</string>
-    <string name="openCheckIn">开放签到</string>
+    <string name="numberOfStudent">学生人数</string>
+    <string name="launchCheckIn">开始签到</string>
     <string name="manualCheckIn">手动补签</string>
     <string name="endCheckIn">结束签到</string>
     <string name="checkIn">签到情况</string>

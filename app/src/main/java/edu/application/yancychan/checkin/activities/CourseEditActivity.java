@@ -3,6 +3,9 @@ package edu.application.yancychan.checkin.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +14,7 @@ import edu.application.yancychan.checkin.R;
 
 public class CourseEditActivity extends AppCompatActivity {
 
+    private Toolbar mToolbar;
     private EditText mCourseNameEdt;
     private EditText mCourseTimeEdt;
     private EditText mCourseCountEdt;
@@ -28,6 +32,9 @@ public class CourseEditActivity extends AppCompatActivity {
     }
 
     private void initViews(){
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_course_edit);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mCourseNameEdt = (EditText) findViewById(R.id.courseName_Change_edt);
         mCourseTimeEdt = (EditText) findViewById(R.id.courseTime_Change_edt);
         mCourseCountEdt = (EditText) findViewById(R.id.courseCount_Change_edt);
@@ -43,6 +50,12 @@ public class CourseEditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CourseEditActivity.this, CourseListActivity.class);
                 startActivity(intent);
+            }
+        });
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

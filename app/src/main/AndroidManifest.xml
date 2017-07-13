@@ -29,21 +29,28 @@
             android:theme="@style/AppCompatFullScreen" />
         <activity
             android:name=".activities.CourseListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.CourseDetailActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.AddCourseActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.CourseEditActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.RetrievePasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppCompatFullScreen" />
-        <activity android:name=".activities.CourseCheckInActivity"></activity>
+        <activity
+            android:name=".activities.CourseCheckInActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme"/>
     </application>
 
 </manifest>

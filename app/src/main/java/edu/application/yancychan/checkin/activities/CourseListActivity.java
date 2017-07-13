@@ -1,10 +1,14 @@
 package edu.application.yancychan.checkin.activities;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,6 +23,11 @@ import edu.application.yancychan.checkin.managers.MyLinearLayoutManager;
 import edu.application.yancychan.checkin.utils.RecyclerViewListDecoration;
 
 public class CourseListActivity extends AppCompatActivity {
+
+    private Toolbar mToolbar;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private CourseAdapter adapter;
+    private RecyclerView mRecyclerview;
 
     public static final String COURSE_NAME = "course_name";
     public static final String COURSE_ID = "course_id";
@@ -44,28 +53,52 @@ public class CourseListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
-//        TextView courseName = (TextView) findViewById(R.id.courseName);
         ButterKnife.inject(this);
-
-        //todo:把添加课程的按钮放到toolbar上
-//        Button addCourse = (Button) findViewById(R.id.addCourse);
-//        addCourse.getBackground().setAlpha(000);
-//        addCourse.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(CourseListActivity.this,AddCourseActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        initViews();
+        setListeners();
         initCourses();
-        RecyclerView recyclerview = (RecyclerView) findViewById(R.id.manager_recycler_view);
-        CourseAdapter adapter = new CourseAdapter(this,courseList);
+
+    }
+
+    private void setListeners() {
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            Thread.sleep(2000);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                initCourses();
+                                adapter.notifyDataSetChanged();
+                                mSwipeRefreshLayout.setRefreshing(false);
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+    }
+
+    private void initViews() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_course_list);
+        setSupportActionBar(mToolbar);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_course_list);
+        mRecyclerview = (RecyclerView) findViewById(R.id.manager_recycler_view);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        adapter = new CourseAdapter(this,courseList);
         MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerview.setLayoutManager(layoutManager);
-        recyclerview.addItemDecoration(new RecyclerViewListDecoration(this,
+        mRecyclerview.setLayoutManager(layoutManager);
+        mRecyclerview.addItemDecoration(new RecyclerViewListDecoration(this,
                 RecyclerViewListDecoration.VERTICAL_LIST));
-        recyclerview.setHasFixedSize(true);
-        recyclerview.setAdapter(adapter);
+        mRecyclerview.setHasFixedSize(true);
+        mRecyclerview.setAdapter(adapter);
     }
 
     private void initCourses() {
@@ -73,5 +106,23 @@ public class CourseListActivity extends AppCompatActivity {
         for (int i=0; i<courses.length; i++) {
             courseList.add(courses[i]);
         }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.toolbar_course_list,menu);
+        return true;
+    }
+
+
+    //toolbar上的增加课程按钮
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.addCourse_toolbar_courseList:
+                Intent intent = new Intent(CourseListActivity.this, AddCourseActivity.class);
+                startActivity(intent);
+                break;
+            default:
+        }
+        return true;
     }
 }
