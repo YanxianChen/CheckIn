@@ -35,6 +35,9 @@
     <string name="saveMessage">保存</string>
     <string name="confirm">确定</string>
     <string name="changeCourse">确定修改</string>
+    <string name="myCourse">我的课程</string>
+    <string name="courseEdit">编辑课程</string>
+    <string name="checking">正在签到中.......</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

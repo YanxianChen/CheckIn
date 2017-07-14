@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.LoginActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppCompatFullScreen">
             <intent-filter>
@@ -29,26 +29,36 @@
             android:theme="@style/AppCompatFullScreen" />
         <activity
             android:name=".activities.CourseListActivity"
+            android:launchMode="singleTask"
+            android:label="@string/myCourse"
             android:screenOrientation="portrait"
             android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.CourseDetailActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.AddCourseActivity"
+            android:launchMode="singleTask"
+            android:label="@string/addCourse"
             android:screenOrientation="portrait"
             android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.CourseEditActivity"
+            android:launchMode="singleTask"
+            android:label="@string/courseEdit"
             android:screenOrientation="portrait"
             android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.RetrievePasswordActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/AppCompatFullScreen" />
         <activity
             android:name=".activities.CourseCheckInActivity"
+            android:launchMode="singleTask"
+            android:label="@string/checking"
             android:screenOrientation="portrait"
             android:theme="@style/MyAppTheme"/>
     </application>

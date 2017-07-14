@@ -1,6 +1,10 @@
 package edu.application.yancychan.checkin.activities;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +29,12 @@ import edu.application.yancychan.checkin.utils.RecyclerViewListDecoration;
 
 public class CourseListActivity extends AppCompatActivity {
 
+    private DrawerLayout mDrawerLayout;
     private Toolbar mToolbar;
+    private NavigationView mNavigationView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private CourseAdapter adapter;
-    private RecyclerView mRecyclerview;
+    private RecyclerView mRecyclerView;
 
     public static final String COURSE_NAME = "course_name";
     public static final String COURSE_ID = "course_id";
@@ -60,6 +67,25 @@ public class CourseListActivity extends AppCompatActivity {
 
     }
 
+    private void initViews() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.draw_layout_course_list);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar_course_list);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
+        mNavigationView = (NavigationView) findViewById(R.id.nav_view_course_list);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_course_list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.manager_recycler_view);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        adapter = new CourseAdapter(this,courseList);
+        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.addItemDecoration(new RecyclerViewListDecoration(this,
+                RecyclerViewListDecoration.VERTICAL_LIST));
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(adapter);
+    }
+
     private void setListeners() {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -84,21 +110,31 @@ public class CourseListActivity extends AppCompatActivity {
                 }).start();
             }
         });
-    }
 
-    private void initViews() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_course_list);
-        setSupportActionBar(mToolbar);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_course_list);
-        mRecyclerview = (RecyclerView) findViewById(R.id.manager_recycler_view);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        adapter = new CourseAdapter(this,courseList);
-        MyLinearLayoutManager layoutManager = new MyLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        mRecyclerview.setLayoutManager(layoutManager);
-        mRecyclerview.addItemDecoration(new RecyclerViewListDecoration(this,
-                RecyclerViewListDecoration.VERTICAL_LIST));
-        mRecyclerview.setHasFixedSize(true);
-        mRecyclerview.setAdapter(adapter);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.
+                OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_course:
+                        Intent intent = new Intent(getApplicationContext(),CourseListActivity.class);
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_profile:
+                        Toast.makeText(getApplicationContext(),"profile",Toast.LENGTH_SHORT);
+                        break;
+                    default:
+                }
+                return true;
+            }
+        });
+
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
     }
 
     private void initCourses() {
@@ -112,7 +148,6 @@ public class CourseListActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_course_list,menu);
         return true;
     }
-
 
     //toolbar上的增加课程按钮
     public boolean onOptionsItemSelected(MenuItem item){
