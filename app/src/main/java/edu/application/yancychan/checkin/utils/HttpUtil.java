@@ -9,6 +9,8 @@ import okhttp3.Request;
 //与服务器交互工具类
 public class HttpUtil {
 
+    public static final String SERVERADDRESS = "119.23.249.176:8082/check";
+
     public static void sendOkHttpRequest(String address, okhttp3.Callback callback){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(address).build();

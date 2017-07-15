@@ -86,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
         newTeacher.setTeacherEmail(mEmailEdt.getText().toString());
         newTeacher.setTeacherPassword(mPwEdt.getText().toString());
         newTeacher.setGender(gender);
-        if (gender == 1){
+        if (gender == 0){
             newTeacher.setAvatar(R.drawable.teacher_male);
         }else {
             newTeacher.setAvatar(R.drawable.teacher_female);

@@ -7,8 +7,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.litepal.crud.DataSupport;
+
+import java.sql.Time;
+import java.util.Date;
+import java.util.List;
 
 import edu.application.yancychan.checkin.R;
+import edu.application.yancychan.checkin.beans.Course;
 
 public class AddCourseActivity extends AppCompatActivity {
 
@@ -21,11 +29,14 @@ public class AddCourseActivity extends AppCompatActivity {
     private EditText mStudentNumberEdt;
     private Button mSaveBtn;
 
+    Course addNewCourse = new Course();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
         initViews();
+        initCourse();
         setListeners();
     }
 
@@ -40,6 +51,22 @@ public class AddCourseActivity extends AppCompatActivity {
         mClassLocationEdt = (EditText) findViewById(R.id.classLocation_Add_edt);
         mStudentNumberEdt = (EditText) findViewById(R.id.numberOfStudent_Add_edt);
         mSaveBtn = (Button) findViewById(R.id.save_Add_btn);
+    }
+
+    private void initCourse(){
+        addNewCourse.setCourseName(mCourseNameEdt.getText().toString());
+//        addNewCourse.setClassTime((Time) mClassTimeEdt.getText().toString());
+
+        CheckCourse();
+    }
+
+    private void CheckCourse() {
+        List<Course> courses = DataSupport.where("coursename = ?", mCourseNameEdt.getText().toString()).find(Course.class);
+        if (courses.size() == 0){
+            addNewCourse.save();
+        }else {
+            Toast.makeText(AddCourseActivity.this, "该课程已添加过",Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setListeners(){
