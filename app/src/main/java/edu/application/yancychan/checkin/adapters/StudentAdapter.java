@@ -58,7 +58,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     public void onBindViewHolder(StudentAdapter.ViewHolder holder, int position) {
         Student student = mStudentList.get(position);
         holder.textView.setText(new StringBuilder().append(student.getStudentId()));
-        Glide.with(mContent).load(student.getSex()).into(holder.circleImageView);
+        Glide.with(mContent).load(student.getGender()).into(holder.circleImageView);
         if (!student.isPresent()){
             holder.cardView.setCardBackgroundColor(Color.rgb(0xFF,0xA0,0x7A));
         }

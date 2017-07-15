@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch;
+
 import edu.application.yancychan.checkin.R;
 import edu.application.yancychan.checkin.beans.Teacher;
 import edu.application.yancychan.checkin.managers.RegisterErrorConstant;
@@ -25,12 +27,16 @@ public class RegisterActivity extends AppCompatActivity {
     public static String emailCheck =
             "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
 
+
     private TextView mRegisterTitle;
     private EditText mUsernameEdt;
     private EditText mEmailEdt;
     private EditText mPwEdt;
     private EditText mRePwEdt;
+    private MaterialAnimatedSwitch mGenderSwitchBtn;
     private Button mRegisterBtn;
+
+    private int gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmailEdt = (EditText) findViewById(R.id.register_user_email);
         mPwEdt = (EditText) findViewById(R.id.register_pw_edt);
         mRePwEdt = (EditText) findViewById(R.id.register_pw_confirm);
+        mGenderSwitchBtn = (MaterialAnimatedSwitch) findViewById(R.id.register_gender_switch);
         mRegisterBtn = (Button) findViewById(R.id.register_btn);
     }
 
@@ -55,6 +62,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        mGenderSwitchBtn.setOnCheckedChangeListener(new MaterialAnimatedSwitch.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(boolean isChecked) {
+                gender = isChecked ? 1 : 0;
             }
         });
 
@@ -71,14 +85,24 @@ public class RegisterActivity extends AppCompatActivity {
         newTeacher.setTeacherName(mUsernameEdt.getText().toString());
         newTeacher.setTeacherEmail(mEmailEdt.getText().toString());
         newTeacher.setTeacherPassword(mPwEdt.getText().toString());
-
+        newTeacher.setGender(gender);
+        if (gender == 1){
+            newTeacher.setAvatar(R.drawable.teacher_male);
+        }else {
+            newTeacher.setAvatar(R.drawable.teacher_female);
+        }
         RegisterCheck(newTeacher, mRePwEdt.getText().toString());
     }
 
     private void RegisterCheck(Teacher newTeacher, String rePw){
+        // TODO: 17-7-15  此处应该进行网络请求,向服务器获取信息,再进行接下来的操作
+
         int resultCode = checkTextLegality(newTeacher,rePw);
         if (resultCode == -1){
+            newTeacher.save();
             Toast.makeText(RegisterActivity.this, "注册成功",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            startActivity(intent);
         }else{
             Toast.makeText(RegisterActivity.this,
                     RegisterErrorConstant.getErrorMsg(resultCode), Toast.LENGTH_SHORT).show();

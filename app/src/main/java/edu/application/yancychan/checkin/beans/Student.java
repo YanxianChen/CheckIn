@@ -9,16 +9,18 @@ import org.litepal.crud.DataSupport;
 public class Student extends DataSupport{
 
     private int studentId;  //学号
-    private int sex;    //性别
+    private int gender;    //性别
     private boolean present;    //是否到场
+
+    public Student(){}
 
     public Student(int studentId){
         this.studentId = studentId;
     }
 
-    public Student(int studentId,int sex,boolean present){
+    public Student(int studentId,int gender,boolean present){
         this.studentId = studentId;
-        this.sex = sex;
+        this.gender = gender;
         this.present = present;
     }
 
@@ -30,12 +32,12 @@ public class Student extends DataSupport{
         this.studentId = studentId;
     }
 
-    public int getSex() {
-        return sex;
+    public int getGender() {
+        return gender;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public boolean isPresent() {

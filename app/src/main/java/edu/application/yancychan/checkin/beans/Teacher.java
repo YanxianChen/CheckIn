@@ -8,29 +8,29 @@ import org.litepal.crud.DataSupport;
 
 public class Teacher extends DataSupport {
 
-    private byte sex;
+    private int gender;
     private int teacherId;
-    private String avatar;
+    private int avatar;
     private String teacherName;
     private String teacherEmail;
     private String teacherPassword;
 
+    public Teacher(){}
 
-    public byte getSex() {
-        return sex;
-    }
-
-    public void setSex(byte sex) {
-        this.sex = sex;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
+    public Teacher(String teacherName,String teacherEmail,int avatar){
+        this.teacherName = teacherName;
+        this.teacherEmail = teacherEmail;
         this.avatar = avatar;
     }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
 
     public int getTeacherId() {
         return teacherId;
@@ -38,6 +38,14 @@ public class Teacher extends DataSupport {
 
     public void setTeacherId(int teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public int getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(int avatar) {
+        this.avatar = avatar;
     }
 
     public String getTeacherName() {

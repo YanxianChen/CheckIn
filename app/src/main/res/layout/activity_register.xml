@@ -63,6 +63,39 @@
             android:hint="@string/login_pw_confirm"
             android:inputType="textPassword"
             android:maxLines="1" />
+
+        <LinearLayout
+            android:id="@+id/register_sex_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:hint="@string/register_boy" />
+
+            <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+                android:id="@+id/register_gender_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ball_press_color="@color/colorPrimaryDark"
+                app:ball_release_color="@color/colorPrimary"
+                app:base_press_color="@color/colorAccentDark"
+                app:base_release_color="@color/colorAccent"
+                app:icon_press="@mipmap/ic_keyboard_arrow_right_white_36dp"
+                app:icon_release="@mipmap/ic_keyboard_arrow_left_white_36dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:hint="@string/register_girl" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <Button
